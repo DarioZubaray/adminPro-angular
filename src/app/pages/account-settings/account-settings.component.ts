@@ -13,6 +13,7 @@ export class AccountSettingsComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.aplicarCheckAlCargar();
   }
 
   cambiarColor(color: string, link: any) {
@@ -29,5 +30,17 @@ export class AccountSettingsComponent implements OnInit {
     }
 
     link.classList.add('working');
+  }
+
+  aplicarCheckAlCargar() {
+    const selectores: any = document.getElementsByClassName('selector');
+
+    const tema = this._ajustes.ajustes.tema;
+    for (const ref of selectores) {
+      if ( ref.getAttribute('data-theme') === tema ) {
+        ref.classList.add('working');
+        break;
+      }
+    }
   }
 }
