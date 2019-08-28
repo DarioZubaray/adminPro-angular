@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
+import { retry } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-rxjs',
@@ -9,8 +11,18 @@ import { Observable } from 'rxjs';
 export class RxjsComponent implements OnInit {
 
   constructor() {
+    this.getObservable().pipe(retry(1)).subscribe(
+      numero => console.log('subs: ', numero),           // Next
+      error => console.error('ocurrió un error', error), // Error
+      () => console.log('Subscripción finalizada')       // Complete
+    );
+   }
 
-    const obs = new Observable( observer => {
+  ngOnInit() {
+  }
+
+  getObservable(): Observable<number> {
+    return new Observable( (observer: Subscriber<number>) => {
       let contador = 0;
       const intervalo = setInterval( () => {
         contador += 1;
@@ -24,15 +36,5 @@ export class RxjsComponent implements OnInit {
         }
       }, 1000);
     });
-
-    obs.subscribe(
-      numero => console.log('subs: ', numero),           // Next
-      error => console.error('ocurrió un error', error), // Error
-      () => console.log('Subscripción finalizada')       // Complete
-    );
-   }
-
-  ngOnInit() {
   }
-
 }
