@@ -10,6 +10,11 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - [@Inputs](https://angular.io/api/core/Input)
 - [@Outputs](https://angular.io/api/core/Output)
 - [@ViewChild](https://angular.io/api/core/ViewChild)
+Promesas
+RXJS
+Breadcrumbs
+MetaTags
+Titulo
 
 ## Dependencies
 
