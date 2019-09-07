@@ -93,4 +93,17 @@ export class UsuarioService {
                       })
                     );
   }
+
+  actualizarUsuario(usuario: Usuario) {
+    const url = URL_SERVICIOS + '/usuario/' + usuario._id + '?token=' + this.token;
+
+    return this.http.put(url, usuario)
+                    .pipe(
+                      map( (resp: any) => {
+                        this.guardarLocalStorage(resp.usuario._id, this.token, resp.usuario);
+                        swal('Usuario actualizado', usuario.nombre, 'success');
+                        return true;
+                      })
+                    );
+  }
 }
