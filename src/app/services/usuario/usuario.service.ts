@@ -16,6 +16,10 @@ export class UsuarioService {
 
   constructor(private http: HttpClient) { }
 
+  estaLoguedo() {
+    return ( this.token );
+  }
+
   guardarLocalStorage( id: string, token: string, usuario: Usuario) {
     console.log('guardando en el localStorage: ', id, token, usuario);
     localStorage.setItem('id', id);
@@ -35,7 +39,7 @@ export class UsuarioService {
                         this.guardarLocalStorage(resp.id, resp.token, resp.usuario);
                         return true;
                       })
-                    )
+                    );
   }
 
   login(usuario: Usuario, recordar: boolean = false) {
