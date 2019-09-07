@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -36,6 +37,7 @@ import { ProfileComponent } from './profile/profile.component';
     Graficas1Component
   ],
   imports: [
+    CommonModule,
     SharedModule,
     FormsModule,
     PAGES_ROUTES,
