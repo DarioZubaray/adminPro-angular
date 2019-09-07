@@ -34,9 +34,9 @@
                 <h6 class="card-subtitle">nombre usuario</h6>
 
                 <img src="" alt="">
-                <input type="file" name="" id="">
+                <input (change)="seleccionImagen( $event.target.files[0] )" type="file" name="" id="">
                 <br>
-                <button type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10 my-3">
+                <button (click)="cambiarImagen()" [disabled]="!imagenSubir" type="button" class="btn btn-success btn-block waves-effect waves-light m-r-10 my-3">
                     <i class="fa fa-save"></i> <span> Actualizar Foto </span>
                   </button>
             </div>

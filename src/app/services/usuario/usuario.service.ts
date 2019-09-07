@@ -6,6 +6,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert';
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subirArchivo/subir-archivo.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor(private http: HttpClient, public router: Router) {
+  constructor(private http: HttpClient, public router: Router, public _subirArchivoService: SubirArchivoService) {
     this.cargarLocalStorage();
    }
 
@@ -105,5 +106,14 @@ export class UsuarioService {
                         return true;
                       })
                     );
+  }
+
+  cambiarImagen(archivo: File, id: string) {
+    this._subirArchivoService.SubirArchivo(archivo, 'usuarios', id)
+                             .then( (resp: any) => {
+                               this.usuario.img = resp.usuario.img;
+                               swal(resp.mensaje, this.usuario.nombre, 'success');
+                               this.guardarLocalStorage(id, this.token, this.usuario);
+                             }).catch( error => console.log(error));
   }
 }
