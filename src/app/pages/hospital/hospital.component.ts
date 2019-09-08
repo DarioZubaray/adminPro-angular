@@ -8,7 +8,7 @@ declare var swal: any;
 @Component({
   selector: 'app-hospital',
   templateUrl: './hospital.component.html',
-  styleUrls: ['./hospital.component.css']
+  styles: []
 })
 export class HospitalComponent implements OnInit {
 
