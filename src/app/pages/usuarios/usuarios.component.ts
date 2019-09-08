@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/service.index';
 
+declare var swal: any;
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -26,10 +28,13 @@ export class UsuariosComponent implements OnInit {
       this._usuarioService.cargarUsuarios(this.desde)
                           .subscribe( (resp: any) => {
                             this.totalRegistros = resp.total;
+                            if (this.desde >= this.totalRegistros) {
+                              this.desde = this.totalRegistros - 5;
+                            }
                             this.usuarios = resp.usuarios;
                             this.cargando = false;
                           });
-    }, 1000);
+    }, 500);
   }
 
   cambiarDesde(desde: number) {
@@ -59,6 +64,26 @@ export class UsuariosComponent implements OnInit {
                             this.usuarios = usuarios;
                             this.cargando = false;
                           });
-    }, 1000);
+    }, 500);
+  }
+
+  borrarUsuario(usuario: Usuario) {
+    if (usuario._id === this._usuarioService.usuario._id) {
+      swal('No se puede borrar usuario', 'No es posible borrarse a si mismo.', 'error');
+      return;
+    }
+
+    swal({
+      title: '¿Esta seguro?',
+      text: 'Esta a punto de borrar a ' + usuario.nombre,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true
+    }).then( borrar => {
+      if (borrar) {
+        this._usuarioService.borrarUsuario(usuario._id)
+                            .subscribe( borrado => this.cargarUsuarios());
+      }
+    });
   }
 }
