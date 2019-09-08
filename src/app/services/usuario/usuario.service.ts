@@ -101,7 +101,9 @@ export class UsuarioService {
     return this.http.put(url, usuario)
                     .pipe(
                       map( (resp: any) => {
-                        this.guardarLocalStorage(resp.usuario._id, this.token, resp.usuario);
+                        if (usuario._id === this.usuario._id) {
+                          this.guardarLocalStorage(resp.usuario._id, this.token, resp.usuario);
+                        }
                         swal('Usuario actualizado', usuario.nombre, 'success');
                         return true;
                       })
