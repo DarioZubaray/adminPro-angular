@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <input #input (keyup)="buscarMedico(input.value)" type="text" class="form-control" placeholder="Buscar usuarios...">
+                <input #input (keyup)="buscarMedico(input.value)" type="text" class="form-control" placeholder="Buscar medicos...">
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="card-body">
                 <h3 class="card-title">Médicos registrados ( <small> {{ totalRegistros }}</small> )</h3>
 
-                <button (click)="crearMedico()" class="btn btn-primary pull-right rounded">
+                <button [routerLink]="['/medico', '/nuevo']" class="btn btn-primary pull-right rounded">
                     <i class="mdi mdi-plus"></i>
                     <span>Crear Médico</span>
                 </button>
@@ -48,7 +48,7 @@
                             <td> {{ medico.nombre }} </td>
                             <td> {{ medico.hospital.nombre }} </td>
                             <td>
-                                <button (click)="guardarMedico(medico)" class="btn btn-primary mx-1">
+                                <button [routerLink]="['/medico', medico._id]" class="btn btn-primary mx-1">
                                 <i class="fa fa-edit"></i>
                               </button>
                                 <button (click)="borrarMedico(medico)" class="btn btn-danger mx-1">

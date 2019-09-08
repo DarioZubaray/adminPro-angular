@@ -9,7 +9,7 @@ import { MedicoService } from '../../services/medico/medico.service';
 })
 export class MedicosComponent implements OnInit {
 
-  medicos: Medico[] = [];
+  medicos: any[] = [];
   cargando: boolean = true;
   totalRegistros: number = 0;
 
@@ -33,18 +33,22 @@ export class MedicosComponent implements OnInit {
   }
 
   buscarMedico( terminoBusqueda: string) {
+    if ( terminoBusqueda.length <= 0) {
+      this.cargarMedicos();
+      return;
+    }
+    this.cargando = true;
 
-  }
-
-  crearMedico() {
-
+    setTimeout( () => {
+      this._medicoService.buscarMedico(terminoBusqueda)
+                        .subscribe( (medicos: any) => {
+                          this.medicos = medicos;
+                          this.cargando = false;
+                        });
+    }, 500);
   }
 
   mostrarModal( medico: Medico) {
-
-  }
-
-  guardarMedico( medico: Medico) {
 
   }
 
