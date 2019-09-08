@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 import { HospitalComponent } from './hospital/hospital.component';
+import { MedicosComponent } from './medicos/medicos.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HospitalComponent } from './hospital/hospital.component';
     ProfileComponent,
     UsuariosComponent,
     ModalUploadComponent,
-    HospitalComponent
+    HospitalComponent,
+    MedicosComponent
   ],
   exports: [
     DashboardComponent,
