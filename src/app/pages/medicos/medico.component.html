@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row animated fadeIn">
     <div class="col-md-6">
         <div class="card card-body">
             <h3 class="box-title m-b-0">Medico: nombre medico</h3>
@@ -37,7 +37,7 @@
     <div class="col-md-3" *ngIf="medico._id">
         <div class="card card-body">
             <h4 class="box-title -m-b-0">Imagen</h4>
-            <img [src]="medico.img | imagen: 'medicos'" class="img-circle img-fluid">
+            <img (click)="cambiarFoto()" [src]="medico.img | imagen: 'medicos'" class="img-circle img-fluid pointer">
         </div>
     </div>
 </div>

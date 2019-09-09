@@ -50,8 +50,18 @@ export class MedicoService {
     return this.http.post(url, medico)
                     .pipe(
                       map( (resp: any) => {
-                        console.log(resp);
                         swal('Medico creado!', resp.medico.nombre, 'success');
+                        return resp.medico;
+                      })
+                    );
+  }
+
+  cargarMedico( id: string) {
+    const url = URL_SERVICIOS + '/medico/' + id;
+
+    return this.http.get(url)
+                    .pipe(
+                      map( (resp: any) => {
                         return resp.medico;
                       })
                     );
