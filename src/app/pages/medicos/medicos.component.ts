@@ -53,6 +53,6 @@ export class MedicosComponent implements OnInit {
   }
 
   borrarMedico( medico: Medico) {
-
+    this._medicoService.borrarMedico(medico._id).subscribe( () => this.cargarMedicos());
   }
 }
