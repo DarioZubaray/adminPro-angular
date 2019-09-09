@@ -26,7 +26,6 @@ export class MedicosComponent implements OnInit {
     setTimeout( () => {
       this._medicoService.cargarMedicos()
                          .subscribe( (medicos: any) => {
-                           console.log(medicos);
                             this.medicos = medicos;
                             this.cargando = false;
                          });
