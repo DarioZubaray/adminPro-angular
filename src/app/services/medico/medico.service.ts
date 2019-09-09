@@ -4,6 +4,7 @@ import { URL_SERVICIOS } from '../../config/config';
 import { map } from 'rxjs/operators';
 import { UsuarioService } from '../usuario/usuario.service';
 import swal from 'sweetalert';
+import { Medico } from 'src/app/models/medico.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,19 @@ export class MedicoService {
                     .pipe(
                       map( (resp: any) => {
                         swal('Medicos borrado', resp.medico.nombre, 'success');
+                        return resp.medico;
+                      })
+                    );
+  }
+
+  guardarMedico(medico: Medico) {
+    const url = URL_SERVICIOS + '/medico?token=' + this._usuarioService.token;
+
+    return this.http.post(url, medico)
+                    .pipe(
+                      map( (resp: any) => {
+                        console.log(resp);
+                        swal('Medico creado!', resp.medico.nombre, 'success');
                         return resp.medico;
                       })
                     );
