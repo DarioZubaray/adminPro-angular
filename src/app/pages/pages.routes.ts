@@ -15,9 +15,10 @@ import { MedicosComponent } from './medicos/medicos.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 import { AdminGuard } from '../services/guards/admin.guard';
+import { VerificaTokenGuard } from '../services/guards/verifica-token.guard';
 
 const pagesRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'} },
+  { path: 'dashboard', component: DashboardComponent, data: { titulo: 'Dashboard'}, canActivate: [VerificaTokenGuard] },
   { path: 'progress', component: ProgressComponent, data: { titulo: 'Barra de progreso'} },
   { path: 'graficas1', component: Graficas1Component, data: { titulo: 'Graficos de donas'} },
   { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas vacias'} },
